@@ -49,19 +49,21 @@ h1{font-size:1.6rem;margin:0 0 6px;}
 
   <div class="tip">
     <p>以後請用上面這個新網址。</p>
-    <p>如果你把活動快報加到了<b>書籤</b>或<b>手機主畫面</b>，到新網址之後請再加一次。</p>
+    <p>如果你把活動快報的網址存在<b>書籤</b>、<b>手機主畫面</b>、<b>記事本</b>或 <b>LINE</b> 裡，請換成新網址；書籤和主畫面可以到新網址之後再加一次。</p>
   </div>
 
   <a class="go" id="go" href="https://liming-tjc.org/">現在就前往</a>
   <p class="count" id="count">稍後會自動帶你過去</p>
 </div>
 
-<!-- 之後要統計還有多少人從舊網址進來，把 Cloudflare Web Analytics 給的那一行貼在這裡 -->
+<!-- 統計還有多少人從舊網址進來（到期前決定要不要多續一年）：
+     Cloudflare 儀表板 → Web Analytics → 新增網站 → 主機名稱填 li-ming-tjc.org
+     → 選「手動加入 JS 程式碼」→ 把它給的那一行 <script ...> 貼在這段註解下面 -->
 
 <script>
 (function () {
   // 停留幾秒再自動跳。長輩讀字比較慢，給足時間看清楚新網址
-  var 秒 = 12;
+  var 秒 = 8;
 
   // 舊網址是哪一頁，新網址就去同一頁
   var 目的 = "https://liming-tjc.org" + location.pathname + location.search + location.hash;
