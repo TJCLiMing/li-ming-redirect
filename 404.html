@@ -1,3 +1,90 @@
-<!doctype html><meta charset="utf-8"><title>活動快報搬家了</title>
-<script>location.replace("https://liming-tjc.org" + location.pathname + location.search + location.hash);</script>
-<p>活動快報搬到 <a href="https://liming-tjc.org">liming-tjc.org</a></p>
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<title>活動快報換新網址了</title>
+<link rel="canonical" href="https://liming-tjc.org/">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700&display=swap">
+<style>
+:root{--paper:#f5f3ee;--card:#ffffff;--ink:#2a2620;--mute:#6b6457;--main:#8a5a1f;--line:#e4ddd0;}
+@media (prefers-color-scheme:dark){
+  :root{--paper:#171512;--card:#211e1a;--ink:#f1ece4;--mute:#a59c8d;--main:#e0a95c;--line:#3a352e;}
+}
+*{box-sizing:border-box;}
+body{
+  margin:0;min-height:100vh;background:var(--paper);color:var(--ink);
+  font-family:'Noto Sans TC',system-ui,sans-serif;line-height:1.8;
+  display:grid;place-items:center;padding:24px 16px;
+}
+.card{
+  width:100%;max-width:440px;background:var(--card);border:1px solid var(--line);
+  border-radius:18px;padding:30px 24px 26px;text-align:center;
+}
+h1{font-size:1.6rem;margin:0 0 6px;}
+.sub{color:var(--mute);font-size:1.05rem;margin:0 0 22px;}
+.new{
+  font-size:1.7rem;font-weight:700;color:var(--main);letter-spacing:.02em;
+  border:2px solid var(--main);border-radius:12px;padding:12px 8px;margin:0 0 20px;
+  word-break:break-all;
+}
+.tip{font-size:1.05rem;text-align:left;margin:0 0 24px;}
+.tip p{margin:0 0 10px;}
+.go{
+  display:block;width:100%;padding:16px;border:0;border-radius:12px;
+  background:var(--main);color:#fff;font-family:inherit;font-size:1.25rem;font-weight:700;
+  text-decoration:none;
+}
+@media (prefers-color-scheme:dark){.go{color:#1a1712;}}
+.count{color:var(--mute);font-size:1rem;margin:14px 0 0;}
+</style>
+</head>
+<body>
+<div class="card">
+  <h1>活動快報換新網址了</h1>
+  <p class="sub">黎明教會活動快報搬到新家</p>
+
+  <div class="new">liming-tjc.org</div>
+
+  <div class="tip">
+    <p>以後請用上面這個新網址。</p>
+    <p>如果你把活動快報加到了<b>書籤</b>或<b>手機主畫面</b>，到新網址之後請再加一次。</p>
+  </div>
+
+  <a class="go" id="go" href="https://liming-tjc.org/">現在就前往</a>
+  <p class="count" id="count">稍後會自動帶你過去</p>
+</div>
+
+<!-- 之後要統計還有多少人從舊網址進來，把 Cloudflare Web Analytics 給的那一行貼在這裡 -->
+
+<script>
+(function () {
+  // 停留幾秒再自動跳。長輩讀字比較慢，給足時間看清楚新網址
+  var 秒 = 12;
+
+  // 舊網址是哪一頁，新網址就去同一頁
+  var 目的 = "https://liming-tjc.org" + location.pathname + location.search + location.hash;
+  var go = document.getElementById("go");
+  var count = document.getElementById("count");
+  go.href = 目的;
+
+  // 活動快報有些頁面是包在框架裡顯示的，要讓整個視窗跳走，不能只換框架裡那一塊
+  function 前往() {
+    try { (window.top || window).location.replace(目的); }
+    catch (e) { location.replace(目的); }
+  }
+  go.addEventListener("click", function (e) { e.preventDefault(); 前往(); });
+
+  function 倒數() {
+    if (秒 <= 0) { 前往(); return; }
+    count.textContent = 秒 + " 秒後自動帶你過去";
+    秒 -= 1;
+    setTimeout(倒數, 1000);
+  }
+  倒數();
+})();
+</script>
+<noscript><p style="text-align:center"><a href="https://liming-tjc.org/">前往 liming-tjc.org</a></p></noscript>
+</body>
+</html>
